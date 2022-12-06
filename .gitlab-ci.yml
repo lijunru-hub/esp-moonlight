@@ -29,7 +29,7 @@ before_script:
 
 .build_examples_template: &build_examples_template
   stage: build
-  image: $CI_DOCKER_REGISTRY/esp32-ci-env$BOT_DOCKER_IMAGE_TAG
+  image: espressif/idf:release-v4.0.2
   tags:
     - build
   # Artifacts are not used temporarily
@@ -98,7 +98,7 @@ build_demo_cmake:
 
 build_docs:
     stage: build
-    image: $CI_DOCKER_REGISTRY/esp32-ci-env$BOT_DOCKER_IMAGE_TAG
+    image: espressif/idf:release-v4.0.2
     tags:
         - build_docs
     artifacts:
@@ -131,7 +131,7 @@ push_master_to_github:
     - master
     - /^release\/v/
 #  when: on_success
-  image: $CI_DOCKER_REGISTRY/esp32-ci-env
+  image: espressif/idf:release-v4.0.2
   variables:
     GIT_STRATEGY: clone
     GITHUB_PUSH_REFS: refs/remotes/origin/release refs/remotes/origin/master
